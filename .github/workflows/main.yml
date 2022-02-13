@@ -24,3 +24,11 @@ jobs:
 #        cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Veracode Upload And Scan
+      uses: veracode/veracode-uploadandscan-action@0.2.1
+      with:
+        appname: 'MySpringBootSample'
+        createprofile: true
+        filepath: 'target/my-spring-prj-sample-0.0.1-SNAPSHOT.war'
+        vid: '${{ secrets.API_ID }}'
+        vkey: '${{ secrets.API_KEY }}'
